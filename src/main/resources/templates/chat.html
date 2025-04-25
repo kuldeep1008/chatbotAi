@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Chatbot</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h2>Chat with AI 🤖</h2>
+<div id="chat-box" style="border: 1px solid #ccc; padding: 10px; height: 30px; overflow-y: scroll;"></div>
+
+<form id="chat-form">
+    <input type="text" id="user-message" placeholder="Type a message..." required style="width: 70%;">
+    <button type="submit">Send</button>
+</form>
+
+<script>
+    function appendMessage(sender, text) {
+      $("#chat-box").append(`<div><strong>${sender}:</strong> ${text}</div>`);
+      $("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
+    }
+
+    $("#chat-form").submit(function (e) {
+      e.preventDefault();
+      const userMessage = $("#user-message").val();
+      appendMessage("You", userMessage);
+
+      $.ajax({
+        type: "POST",
+        url: "/api/chat",
+        contentType: "application/json",
+        data: JSON.stringify({ message: userMessage }),
+        success: function (response) {
+          appendMessage("Bot", response.response);
+          $("#user-message").val("");
+        },
+        error: function () {
+          appendMessage("Bot", "❌ Error: Couldn't get response from server.");
+        }
+      });
+    });
+</script>
+</body>
+</html>
