@@ -13,7 +13,7 @@ import java.net.http.HttpResponse;
 @Service
 public class OpenAIService {
 
-    @Value("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")
+    @Value("xxxxxxxxxxxxxxxx")
     private String apiKey;
 
     public String getAIResponse(String prompt) {
@@ -31,7 +31,7 @@ public class OpenAIService {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://api.openai.com/v1/completions"))
                     .header("Content-Type", "application/json")
-                    .header("Authorization", "Bearer " + "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")
+                    .header("Authorization", "Bearer " + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
                     .POST(HttpRequest.BodyPublishers.ofString(requestBody.toString()))
                     .build();
 
