@@ -16,11 +16,11 @@ import java.nio.charset.StandardCharsets;
 public class GoogleSearchService {
 
 
-    @Value("764e72e1c1f3243c1")
+    @Value("xxxxxxxxxxxxxxx1")
     private String apiKey;
 
     @Value("\n" +
-            "https://cse.google.com/cse?cx=764e72e1c1f3243c1")
+            "https://cse.google.com/cse?cx=xxxx")
     private String searchEngineId;
 
     public String search(String query) {
